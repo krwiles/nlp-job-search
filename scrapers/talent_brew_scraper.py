@@ -17,8 +17,8 @@ class TalentBrewScraper(Scraper):
         "SearchResultsModuleName": "Search Results",  # Tells backend to send results
     }
 
-    def __init__(self, session: Session, domain: str):
-        super().__init__(session, domain)
+    def __init__(self, domain: str):
+        super().__init__(domain)
 
     def fetch_jobs(self) -> List[JobLink]:
         print(f"Fetching jobs from {self.domain}")

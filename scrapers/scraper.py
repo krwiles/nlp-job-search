@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
+import requests
 from requests import Session
 
 from data import JobLink
@@ -8,9 +9,23 @@ from data import JobLink
 
 class Scraper(ABC):
 
-    def __init__(self, session: Session, domain: str):
-        self.session = session
+    DEFAULT_HEADERS = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/123.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+    }
+
+    def __init__(self, domain: str):
         self.domain = domain
+        self.session = requests.Session()
+        self.session.headers.update(self.DEFAULT_HEADERS)
 
     # Function that returns a list of jobs
     @abstractmethod

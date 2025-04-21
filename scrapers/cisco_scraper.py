@@ -23,9 +23,9 @@ class CiscoJobScraper(Scraper):
 
     pageSize = 25
 
-    def __init__(self, session: Session) -> None:
+    def __init__(self) -> None:
         domain = "https://jobs.cisco.com/jobs/SearchJobs"
-        super().__init__(session, domain)
+        super().__init__(domain)
 
     # This function uses a URL on Cisco's website that will return the number of jobs with the filer applied
     def fetch_job_count(self) -> int:
