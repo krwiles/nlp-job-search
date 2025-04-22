@@ -1,7 +1,5 @@
-import requests
+from controllers import ScraperController
 from scrapers import *
-import json
-from dataclasses import asdict
 
 if __name__ == "__main__":
 
@@ -12,15 +10,11 @@ if __name__ == "__main__":
     scraper2 = TalentBrewScraper(domain1)
     scraper3 = TalentBrewScraper(domain2)
 
-    scraper2.fetch_jobs()
-    scraper3.fetch_jobs()
-    scraper1.fetch_jobs()
+    scraper_controller = ScraperController()
 
-    for job in scraper1.job_links:
-        print(job)
+    scraper_controller.add_scraper(scraper2)
+    scraper_controller.add_scraper(scraper3)
 
-    for job in scraper2.job_links:
-        print(job)
+    scraper_controller.run_scrapers()
 
-    for job in scraper3.job_links:
-        print(job)
+    scraper_controller.save_new_job_links()

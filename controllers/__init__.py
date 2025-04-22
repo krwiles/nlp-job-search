@@ -1,3 +1,3 @@
-from .job_links_controller import JobLinksController
+from .scraper_controller import ScraperController
 
-__all__ = ["JobLinksController"]
+__all__ = ["ScraperController"]
