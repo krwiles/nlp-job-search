@@ -1,9 +1,7 @@
 import random
 import time
-from typing import List
 
 from bs4 import BeautifulSoup
-from requests import Session
 
 from data import *
 from .scraper import Scraper
@@ -49,10 +47,11 @@ class CiscoJobScraper(Scraper):
         print("Cisco job count acquired.")
         return job_count
 
-    def fetch_jobs(self) -> List[JobLink]:
+    def fetch_jobs(self) -> None:
+        self.job_links = []  # Make sure the list is empty so not to duplicate data
+
         print(f"Fetching jobs from {self.domain}")
         job_count = self.fetch_job_count()
-        jobs_list = []
 
         # Loop through the pagination on Cisco's site
         for offset in range(0, job_count, self.pageSize):
@@ -75,7 +74,7 @@ class CiscoJobScraper(Scraper):
                 raw_text = job.get_text()
 
                 # Instantiate JobLink with info and append
-                jobs_list.append(JobLink(
+                self.job_links.append(JobLink(
                     url=href,
                     raw_text=raw_text
                 ))
@@ -84,5 +83,3 @@ class CiscoJobScraper(Scraper):
             delay = random.uniform(1, 4)  # Wait between 1 and 4 seconds
             print(f"Sleeping for {delay:.2f} seconds...")
             time.sleep(delay)
-
-        return jobs_list

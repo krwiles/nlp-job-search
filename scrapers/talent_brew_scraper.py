@@ -1,7 +1,4 @@
-from typing import List
-
 from bs4 import BeautifulSoup
-from requests import Session
 
 from data import *
 from .scraper import Scraper
@@ -20,7 +17,9 @@ class TalentBrewScraper(Scraper):
     def __init__(self, domain: str):
         super().__init__(domain)
 
-    def fetch_jobs(self) -> List[JobLink]:
+    def fetch_jobs(self) -> None:
+        self.job_links = []  # Make sure the list is empty so not to duplicate data
+
         print(f"Fetching jobs from {self.domain}")
         response = self.session.get(
             self.domain + self.search_directory,
@@ -32,7 +31,6 @@ class TalentBrewScraper(Scraper):
         soup = BeautifulSoup(data["results"], "html.parser")
         jobs = soup.select("li")  # All jobs are in a list
 
-        jobs_list = []
         for job in jobs:
             a_tag = job.find("a", href=True)
             if not a_tag:
@@ -42,9 +40,7 @@ class TalentBrewScraper(Scraper):
             raw_text = job.get_text()
 
             # Instantiate JobLink with info and append
-            jobs_list.append(JobLink(
+            self.job_links.append(JobLink(
                 url=href,
                 raw_text=raw_text
             ))
-
-        return jobs_list

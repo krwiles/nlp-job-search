@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 from typing import List
 
 import requests
-from requests import Session
 
 from data import JobLink
 
@@ -23,11 +22,13 @@ class Scraper(ABC):
     }
 
     def __init__(self, domain: str):
+        self.job_links: List[JobLink] = []
+
         self.domain = domain
         self.session = requests.Session()
         self.session.headers.update(self.DEFAULT_HEADERS)
 
-    # Function that returns a list of jobs
+    # Function that scrapes job links and stores them in self.job_links
     @abstractmethod
-    def fetch_jobs(self) -> List[JobLink]:
+    def fetch_jobs(self) -> None:
         pass

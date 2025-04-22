@@ -12,15 +12,15 @@ if __name__ == "__main__":
     scraper2 = TalentBrewScraper(domain1)
     scraper3 = TalentBrewScraper(domain2)
 
-    list1 = scraper2.fetch_jobs()
-    list2 = scraper3.fetch_jobs()
-    list3 = scraper1.fetch_jobs()
+    scraper2.fetch_jobs()
+    scraper3.fetch_jobs()
+    scraper1.fetch_jobs()
 
-    for job in list1:
+    for job in scraper1.job_links:
         print(job)
 
-    for job in list2:
+    for job in scraper2.job_links:
         print(job)
 
-    for job in list3:
+    for job in scraper3.job_links:
         print(job)
