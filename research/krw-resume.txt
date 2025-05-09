@@ -1,0 +1,55 @@
+Kurtis Russell Wiles 
+(919) 518-6572 | kurtis.r.wiles@gmail.com | Wake Forest, NC | www.linkedin.com/in/krwiles 
+SUMMARY 
+Recent Computer Science graduate and Software Engineer skilled in backend development, machine learning, and full-stack 
+applications, with a foundation in Physics, Data Analysis, and Mathematics. Eager to apply technical expertise, problem-solving 
+skills, and a passion for continuous learning to a collaborative and innovative engineering team. 
+EDUCATION 
+Bachelor of Science in Computer Science — Western Governors University | Salt Lake City, UT (Online) | Pass/Fail 
+Oct. 2024 
+Coursework: Software Engineering, Advanced Java, Software Design & Quality Assurance, Computer Architecture, 
+Fundamentals of Information Security, Advanced Data Management, Version Control, Discrete Mathematics I-II 
+• Scripting: Developed C++ programs in Visual Studio to explore language fundamentals. 
+• Software Development: Applied object-oriented principles and MVC architecture using Java and JavaFX. 
+• Back-End Programming: Covered RESTful principles with Spring Boot, dependency injection, and multithreading. 
+• Data Structures & Algorithms: Focus on algorithms, Big O, algorithm efficiency, and data structures in Python. 
+• Artificial Intelligence: Gained foundational knowledge in AI and machine learning techniques.  
+• Operating Systems: Studied memory management, process scheduling, and concurrency in OS design. 
+Physics (Coursework toward B.S.) — North Carolina State University | Raleigh, NC | GPA – 4.0 
+Aug. 2020 – May 2021 
+Coursework: Linear Algebra, Scientific Computing, Instrumental and Data Analysis 
+Associate of Science — Wake Technical Community College | Wake Forest, NC | GPA – 4.0 
+May 2020 
+Coursework: Calculus I-III, Differential Equations 
+CERTIFICATIONS 
+Linux Professional Institute (LPI) Linux Essentials Certification — Linux Administration & Application 
+Axelos ITIL Foundation Certificate in IT Service Management — IT Service Management & IT Governance 
+CompTIA Project+ Certified — Project Management Skills & Agile Methodologies 
+EXPERIENCE 
+Jun. 2024 
+Aug. 2023 
+Mar. 2023 
+Neural Network Driven Formula One Pit-Stop Strategy (Capstone Project) — Machine Learning and Data Analysis 
+• Designed a hybrid LSTM neural network using PyTorch to predict F1 pit stops, optimizing strategic decision making. 
+• Engineered preprocessing pipelines for race data, preparing inputs for LSTM model training. 
+Spring Boot REST API Development — Full-Stack Application Development 
+• Developed a REST API backend with Spring Boot, integrated with a MySQL database and an Angular frontend.  
+• Containerized and deployed an application using Docker. 
+Package Routing Program — Heuristic Algorithms and Optimization 
+• Developed a Python program solving a Traveling Salesman Problem variant for efficient package delivery routing. 
+• Implemented a dynamic nearest-neighbor algorithm to optimize delivery truck routes and load balancing. 
+Inventory Management Program — Software Development 
+• Designed a JavaFX desktop application implementing MVC design principles to manage product inventory. 
+• Implemented a user-friendly GUI and wrote detailed Javadoc documentation for the application code.  
+Advanced Data Management — Relational Database Expertise 
+• Engineered an automated data export, import, and analysis workflow using PostgreSQL. 
+Fourier Data Analysis of Music — Scientific Computing and Data Analysis 
+• Developed a Jupyter Notebook with Python to input raw audio data and analyze musical notes. 
+• Worked with a team to design a data processing pipeline to pass processed data on for further analysis. 
+TECHNICAL SKILLS 
+Languages: Python, Java, C++, C#, SQL, TypeScript, JavaScript, HTML, XML, CSS 
+Technologies: Spring Boot, Angular, PyTorch, Git, Docker, Linux, NoSQL, JSON, AWS 
+Concepts: Object Oriented Programming (OOP), MVC Architecture, REST API Development, Version Control, CI/CD, Agile 
+Methodologies, AI & Machine Learning, Natural Language Processing (NLP), LLM 
+Competencies: Data Analysis, Problem Solving, Technical Writing, Communication, Critical Thinking, Time Management, 
+Adaptability, Continuous Learning, Teamwork
