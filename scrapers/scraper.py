@@ -7,6 +7,18 @@ from data import JobLink
 
 
 class Scraper(ABC):
+    """
+    Abstract base class for website job scrapers.
+
+    This class defines the interface and shared functionality for all scrapers.
+    Subclasses must implement the fetch_jobs() method to extract job links from
+    their respective websites in a thread safe manner.
+
+    Attributes:
+        domain (str): The base domain of the website being scraped.
+        job_links (List[JobLink]): A list of scraped job links.
+        session (requests.Session): A configured session with default headers.
+    """
 
     DEFAULT_HEADERS = {
         "User-Agent": (
@@ -22,13 +34,23 @@ class Scraper(ABC):
     }
 
     def __init__(self, domain: str):
+        """
+        Initialize a scraper with the target domain.
+
+        Args:
+            domain (str): The base domain of the website to scrape.
+        """
         self.job_links: List[JobLink] = []
 
         self.domain = domain
         self.session = requests.Session()
         self.session.headers.update(self.DEFAULT_HEADERS)
 
-    # Function that scrapes job links and stores them in self.job_links
     @abstractmethod
     def fetch_jobs(self) -> None:
+        """
+        Scrape job listings from the website.
+
+        Subclasses must implement this method to populate self.job_links.
+        """
         pass

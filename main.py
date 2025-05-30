@@ -12,6 +12,7 @@ if __name__ == "__main__":
 
     scraper_controller = ScraperController()
 
+    scraper_controller.add_scraper(scraper1)
     scraper_controller.add_scraper(scraper2)
     scraper_controller.add_scraper(scraper3)
 

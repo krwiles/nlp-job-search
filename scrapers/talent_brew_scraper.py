@@ -4,13 +4,13 @@ from data import *
 from .scraper import Scraper
 
 
-# Radancy TalentBrew Scraper
 class TalentBrewScraper(Scraper):
+    """Scraper for sites using Radancy TalentBrew for hosting job listings."""
 
     search_directory = "/search-jobs/results"
 
     params = {
-        "RecordsPerPage": 3000,
+        "RecordsPerPage": 3000,  # Arbitrary large number
         "SearchResultsModuleName": "Search Results",  # Tells backend to send results
     }
 
@@ -18,6 +18,7 @@ class TalentBrewScraper(Scraper):
         super().__init__(domain)
 
     def fetch_jobs(self) -> None:
+        """Fetch job listings from a TalentBrew site."""
         self.job_links = []  # Make sure the list is empty so not to duplicate data
 
         print(f"Fetching jobs from {self.domain}")

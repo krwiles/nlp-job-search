@@ -9,6 +9,7 @@ from .scraper import Scraper
 
 # Cisco Job Site Scraper
 class CiscoJobScraper(Scraper):
+    """Scraper for Cisco Jobs."""
 
     job_num_directory = "https://jobs.cisco.com/jobs/SearchJobsResultsAJAX"
 
@@ -27,6 +28,11 @@ class CiscoJobScraper(Scraper):
 
     # This function uses a URL on Cisco's website that will return the number of jobs with the filer applied
     def fetch_job_count(self) -> int:
+        """
+        Fetches the number of job listings at Cisco.
+
+        Utilizes an endpoint on Cisco's site to get the number of job listings with the filters applied.
+        """
         print("Fetching Cisco job count...")
         job_count_response = self.session.get(
             self.job_num_directory,
@@ -48,6 +54,11 @@ class CiscoJobScraper(Scraper):
         return job_count
 
     def fetch_jobs(self) -> None:
+        """
+        Fetch job links from Cisco's job site.
+
+        Scrapes all job postings from the site looping through pagination using the total number of jobs and page size.
+        """
         self.job_links = []  # Make sure the list is empty so not to duplicate data
 
         print(f"Fetching jobs from {self.domain}")

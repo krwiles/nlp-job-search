@@ -9,6 +9,12 @@ from typing import List
 
 
 class ScraperController:
+    """
+    A class for managing and running all website scrapers.
+
+    Attributes:
+        scraper_list (list): The list containing references to all instanced scrapers.
+    """
     def __init__(self, scraper_list: List[Scraper] = None) -> None:
         self.scraper_list = scraper_list or []
 
@@ -18,36 +24,41 @@ class ScraperController:
     def set_scraper_list(self, scraper_list: List[Scraper]) -> None:
         self.scraper_list = scraper_list
 
-    # Runs fetch_jobs() for each scraper using threads.
     def run_scrapers(self) -> None:
+        """Runs fetch_jobs() for each scraper concurrently using threads."""
         threads = []
 
+        # Create and start a thread for each scraper
         for scraper in self.scraper_list:
             thread = threading.Thread(target=scraper.fetch_jobs)
             threads.append(thread)
             thread.start()
 
-        # Waits for all threads to finish
+        # Wait for all threads to finish
         for thread in threads:
             thread.join()
 
     def save_new_job_links(self) -> None:
+        """Saves new JobLinks scraped from each scaper to individual JSON files."""
         base_dir = os.path.dirname(os.path.abspath(__file__))
         output_dir = os.path.join(base_dir, "..", "resources", "job_links")
         os.makedirs(output_dir, exist_ok=True)
 
+        # Save job_links for each scraper
         for scraper in self.scraper_list:
             all_new_jobs: List[JobLink] = scraper.job_links
 
             # Clean domain for file name
-            domain_clean = scraper.domain.replace("https://", "").replace("http://", "").replace("/", "_")
+            domain_clean = (scraper.domain
+                            .replace("https://", "")
+                            .replace("http://", "")
+                            .replace("/", "_"))
             filename = f"{domain_clean}.json"
             filepath = os.path.join(output_dir, filename)
 
             # Load existing jobs from file if it exists
             existing_jobs = []
             existing_urls = set()
-
             if os.path.exists(filepath):
                 try:
                     with open(filepath, "r", encoding="utf-8") as f:
@@ -59,6 +70,7 @@ class ScraperController:
             # Filter new jobs that don't already exist
             new_jobs = [job for job in all_new_jobs if job.url not in existing_urls]
 
+            # End loop if there are no new job_links to save
             if not new_jobs:
                 print(f"No new jobs found for {scraper.domain}.")
                 continue
