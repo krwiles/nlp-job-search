@@ -1,10 +1,10 @@
 from bs4 import BeautifulSoup
 
 from data import *
-from .scraper import Scraper
+from .link_scraper import LinkScraper
 
 
-class TalentBrewScraper(Scraper):
+class TalentBrewScraper(LinkScraper):
     """Scraper for sites using Radancy TalentBrew for hosting job listings."""
 
     search_directory = "/search-jobs/results"

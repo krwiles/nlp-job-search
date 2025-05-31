@@ -4,11 +4,11 @@ import time
 from bs4 import BeautifulSoup
 
 from data import *
-from .scraper import Scraper
+from .link_scraper import LinkScraper
 
 
 # Cisco Job Site Scraper
-class CiscoJobScraper(Scraper):
+class CiscoJobScraper(LinkScraper):
     """Scraper for Cisco Jobs."""
 
     job_num_directory = "https://jobs.cisco.com/jobs/SearchJobsResultsAJAX"

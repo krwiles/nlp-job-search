@@ -7,7 +7,7 @@ from data import JobLink
 from utils import create_session
 
 
-class Scraper(ABC):
+class LinkScraper(ABC):
     """
     Abstract base class for website job scrapers.
 

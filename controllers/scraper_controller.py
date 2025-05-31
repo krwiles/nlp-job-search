@@ -15,13 +15,13 @@ class ScraperController:
     Attributes:
         scraper_list (list): The list containing references to all instanced scrapers.
     """
-    def __init__(self, scraper_list: List[Scraper] = None) -> None:
+    def __init__(self, scraper_list: List[LinkScraper] = None) -> None:
         self.scraper_list = scraper_list or []
 
-    def add_scraper(self, scraper: Scraper) -> None:
+    def add_scraper(self, scraper: LinkScraper) -> None:
         self.scraper_list.append(scraper)
 
-    def set_scraper_list(self, scraper_list: List[Scraper]) -> None:
+    def set_scraper_list(self, scraper_list: List[LinkScraper]) -> None:
         self.scraper_list = scraper_list
 
     def run_scrapers(self) -> None:
