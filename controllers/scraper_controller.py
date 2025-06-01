@@ -1,11 +1,11 @@
 import json
-import os
 import threading
 from dataclasses import asdict
+from pathlib import Path
+from typing import List
 
 from data import JobLink
 from scrapers import *
-from typing import List
 
 
 class ScraperController:
@@ -40,28 +40,28 @@ class ScraperController:
 
     def save_new_job_links(self) -> None:
         """Saves new JobLinks scraped from each scaper to individual JSON files."""
-        base_dir = os.path.dirname(os.path.abspath(__file__))
-        output_dir = os.path.join(base_dir, "..", "resources", "job_links")
-        os.makedirs(output_dir, exist_ok=True)
+        base_dir = Path(__file__).resolve().parent
+        output_dir = base_dir / ".." / "resources" / "job_links"
+        output_dir.mkdir(parents=True, exist_ok=True)
 
         # Save job_links for each scraper
         for scraper in self.scraper_list:
-            all_new_jobs: List[JobLink] = scraper.job_links
+            all_new_jobs = scraper.job_links
 
             # Clean domain for file name
             domain_clean = (scraper.domain
                             .replace("https://", "")
                             .replace("http://", "")
                             .replace("/", "_"))
-            filename = f"{domain_clean}.json"
-            filepath = os.path.join(output_dir, filename)
+            file_name = f"{domain_clean}.json"
+            file_path = output_dir / file_name
 
             # Load existing jobs from file if it exists
             existing_jobs = []
             existing_urls = set()
-            if os.path.exists(filepath):
+            if file_path.exists():
                 try:
-                    with open(filepath, "r", encoding="utf-8") as f:
+                    with open(file_path, "r", encoding="utf-8") as f:
                         existing_jobs = json.load(f)
                         existing_urls = {job["url"] for job in existing_jobs}
                 except Exception as e:
@@ -80,8 +80,8 @@ class ScraperController:
 
             # Save updated list
             try:
-                with open(filepath, "w", encoding="utf-8") as f:
+                with file_path.open("w", encoding="utf-8") as f:
                     json.dump(all_jobs_to_save, f, indent=2, ensure_ascii=False)
-                print(f"Saved {len(new_jobs)} new jobs to {filepath}")
+                print(f"Saved {len(new_jobs)} new jobs to {file_path}")
             except Exception as e:
                 print(f"Failed to save new jobs for {scraper.domain}: {e}")
