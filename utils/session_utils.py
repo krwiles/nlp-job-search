@@ -1,3 +1,7 @@
+import threading
+import time
+import random
+
 import requests
 
 DEFAULT_HEADERS = {
@@ -19,3 +23,11 @@ def create_session() -> requests.Session:
     session = requests.Session()
     session.headers.update(DEFAULT_HEADERS)
     return session
+
+
+def random_delay() -> None:
+    """Creates a random delay for the current thread."""
+    delay = random.uniform(1, 4)  # Wait between 1 and 4 seconds
+    name = threading.current_thread().name
+    print(f"{name} sleeping for {delay:.2f} seconds...")
+    time.sleep(delay)

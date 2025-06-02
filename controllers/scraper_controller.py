@@ -6,6 +6,7 @@ from typing import List
 
 from data import JobLink
 from scrapers import *
+from utils import clean_url
 
 
 class ScraperController:
@@ -46,14 +47,9 @@ class ScraperController:
 
         # Save job_links for each scraper
         for scraper in self.scraper_list:
-            all_new_jobs = scraper.job_links
+            all_new_jobs: List[JobLink] = scraper.job_links
 
-            # Clean domain for file name
-            domain_clean = (scraper.domain
-                            .replace("https://", "")
-                            .replace("http://", "")
-                            .replace("/", "_"))
-            file_name = f"{domain_clean}.json"
+            file_name = f"{clean_url(scraper.domain)}.json"
             file_path = output_dir / file_name
 
             # Load existing jobs from file if it exists

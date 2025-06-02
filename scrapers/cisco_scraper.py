@@ -1,9 +1,7 @@
-import random
-import time
-
 from bs4 import BeautifulSoup
 
 from data import *
+from utils import random_delay
 from .link_scraper import LinkScraper
 
 
@@ -91,6 +89,4 @@ class CiscoJobScraper(LinkScraper):
                 ))
 
             # Add a delay after each page to mimic human behavior
-            delay = random.uniform(1, 4)  # Wait between 1 and 4 seconds
-            print(f"Sleeping for {delay:.2f} seconds...")
-            time.sleep(delay)
+            random_delay()
