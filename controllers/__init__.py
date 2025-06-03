@@ -1,3 +1,3 @@
-from .scraper_controller import ScraperController
+from .link_scraper_controller import LinkScraperController
 
-__all__ = ["ScraperController"]
+__all__ = ["LinkScraperController"]

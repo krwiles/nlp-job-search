@@ -9,20 +9,27 @@ from scrapers import *
 from utils import clean_url
 
 
-class ScraperController:
+class LinkScraperController:
     """
-    A class for managing and running all website scrapers.
+    A class for managing and running all link scrapers.
 
     Attributes:
-        scraper_list (list): The list containing references to all instanced scrapers.
+        scraper_list (List[LinkScraper]): The list containing references to all instanced scrapers.
+        output_dir (Path): The output directory where job links are stored
     """
     def __init__(self, scraper_list: List[LinkScraper] = None) -> None:
         self.scraper_list = scraper_list or []
 
+        base_dir = Path(__file__).resolve().parent
+        self.output_dir = base_dir / ".." / "resources" / "job_links"
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+
     def add_scraper(self, scraper: LinkScraper) -> None:
+        """Add a scraper to the self.scraper_list"""
         self.scraper_list.append(scraper)
 
     def set_scraper_list(self, scraper_list: List[LinkScraper]) -> None:
+        """Replace the entire self.scraper_list"""
         self.scraper_list = scraper_list
 
     def run_scrapers(self) -> None:
@@ -41,16 +48,12 @@ class ScraperController:
 
     def save_new_job_links(self) -> None:
         """Saves new JobLinks scraped from each scaper to individual JSON files."""
-        base_dir = Path(__file__).resolve().parent
-        output_dir = base_dir / ".." / "resources" / "job_links"
-        output_dir.mkdir(parents=True, exist_ok=True)
-
         # Save job_links for each scraper
         for scraper in self.scraper_list:
             all_new_jobs: List[JobLink] = scraper.job_links
 
             file_name = f"{clean_url(scraper.domain)}.json"
-            file_path = output_dir / file_name
+            file_path = self.output_dir / file_name
 
             # Load existing jobs from file if it exists
             existing_jobs = []
