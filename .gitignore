@@ -175,3 +175,6 @@ cython_debug/
 
 # IDE files
 .idea
+
+# Data from scraping
+scraped_data/

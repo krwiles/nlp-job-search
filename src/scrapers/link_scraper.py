@@ -3,8 +3,8 @@ from typing import List
 
 import requests
 
-from data import JobLink
-from utils import create_session
+from src.data import JobLink
+from src.utils import create_session
 
 
 class LinkScraper(ABC):

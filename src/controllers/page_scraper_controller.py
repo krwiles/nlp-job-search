@@ -3,7 +3,7 @@ import threading
 from dataclasses import asdict
 from typing import List
 
-from scrapers import PageScraper
+from src.scrapers import PageScraper
 
 
 class PageScraperController:

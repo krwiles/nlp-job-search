@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 
-from data import *
-from utils import random_delay
-from .link_scraper import LinkScraper
+from src.data import *
+from src.utils import random_delay
+from src.scrapers.link_scraper import LinkScraper
 
 
 # Cisco Job Site Scraper

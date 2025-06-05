@@ -2,8 +2,8 @@ import json
 from pathlib import Path
 from typing import List
 
-from data import JobLink, JobPageEntry
-from utils import create_session, random_delay, clean_url
+from src.data import JobLink, JobPageEntry
+from src.utils import create_session, random_delay, clean_url
 
 
 class PageScraper:
@@ -29,8 +29,8 @@ class PageScraper:
         self.job_pages: List[(JobPageEntry, str)] = []  # List to store fetched web pages
 
         # Find or create output directory
-        base_dir = Path(__file__).resolve().parent
-        self.output_dir = base_dir / ".." / "resources" / "job_pages" / clean_url(self.domain)
+        project_root = Path(__file__).resolve().parent.parent.parent
+        self.output_dir = project_root / "scraped_data" / "job_pages" / clean_url(self.domain)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # Load index file if it exists

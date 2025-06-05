@@ -4,9 +4,9 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import List
 
-from data import JobLink
-from scrapers import *
-from utils import clean_url
+from src.data import JobLink
+from src.scrapers import LinkScraper
+from src.utils import clean_url
 
 
 class LinkScraperController:
@@ -20,8 +20,8 @@ class LinkScraperController:
     def __init__(self, scraper_list: List[LinkScraper] = None) -> None:
         self.scraper_list = scraper_list or []
 
-        base_dir = Path(__file__).resolve().parent
-        self.output_dir = base_dir / ".." / "resources" / "job_links"
+        project_root = Path(__file__).resolve().parent.parent.parent
+        self.output_dir = project_root / "scraped_data" / "job_links"
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def add_scraper(self, scraper: LinkScraper) -> None:

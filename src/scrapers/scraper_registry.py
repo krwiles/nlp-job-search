@@ -1,6 +1,7 @@
 from typing import List
 
-from scrapers import *
+from src.scrapers.link_scrapers import *
+from src.scrapers import LinkScraper
 
 
 def get_all_scrapers() -> List[LinkScraper]:

@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
-from data import *
-from .link_scraper import LinkScraper
+from src.data import *
+from src.scrapers.link_scraper import LinkScraper
 
 
 class TalentBrewScraper(LinkScraper):
