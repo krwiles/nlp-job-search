@@ -6,7 +6,7 @@ from typing import List
 
 from src.data import JobLink
 from src.scrapers import LinkScraper
-from src.utils import clean_url
+from src.utils import FileManager
 
 
 class LinkScraperController:
@@ -17,7 +17,8 @@ class LinkScraperController:
         scraper_list (List[LinkScraper]): The list containing references to all instanced scrapers.
         output_dir (Path): The output directory where job links are stored
     """
-    def __init__(self, scraper_list: List[LinkScraper] = None) -> None:
+    def __init__(self, file_manager: FileManager, scraper_list: List[LinkScraper] = None) -> None:
+        self.file_manager = file_manager
         self.scraper_list = scraper_list or []
 
         project_root = Path(__file__).resolve().parent.parent.parent
@@ -52,7 +53,7 @@ class LinkScraperController:
         for scraper in self.scraper_list:
             all_new_jobs: List[JobLink] = scraper.job_links
 
-            file_name = f"{clean_url(scraper.domain)}.json"
+            file_name = f"{self.file_manager.clean_url(scraper.domain)}.json"
             file_path = self.output_dir / file_name
 
             # Load existing jobs from file if it exists

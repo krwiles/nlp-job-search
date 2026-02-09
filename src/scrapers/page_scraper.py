@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 from src.data import JobLink, JobPageEntry
-from src.utils import clean_url
+from src.utils import FileManager
 from src.utils import SessionUtils
 
 
@@ -19,19 +19,23 @@ class PageScraper:
         job_links (List[JobLink]): A list of pages to be scraped.
         job_pages (List[Tuple[JobPageEntry, str]]): The scraped job pages as tuples of
             JobPageEntry and raw HTML content.
+        file_manager (FileManager): A file manager instance used for file operations
+            such as cleaning filenames and handling output paths.
         output_dir (Path): The output directory where results are saved.
         index_page_entries (List[JobPageEntry]): Entries already present in the index.
         index_urls (Set[str]): The set of URLs already indexed.
         session_utils (SessionUtils): A configured session utility instance.
     """
-    def __init__(self, domain: str, job_links: List[JobLink]) -> None:
+
+    def __init__(self, domain: str, file_manager: FileManager, job_links: List[JobLink]) -> None:
+        self.file_manager = file_manager
         self.domain = domain
         self.job_links: List[JobLink] = job_links  # Links to check
         self.job_pages: List[(JobPageEntry, str)] = []  # List to store fetched web pages
 
         # Find or create output directory
         project_root = Path(__file__).resolve().parent.parent.parent
-        self.output_dir = project_root / "scraped_data" / "job_pages" / clean_url(self.domain)
+        self.output_dir = project_root / "scraped_data" / "job_pages" / self.file_manager.clean_url(self.domain)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # Load index file if it exists
@@ -70,7 +74,7 @@ class PageScraper:
             response = self.session_utils.session.get(link.url)
             response.raise_for_status()  # Checks for error codes in response
 
-            file_name = f"{clean_url(link.url)}.html"
+            file_name = f"{self.file_manager.clean_url(link.url)}.html"
 
             # Store the page entry and raw html
             self.job_pages.append(
