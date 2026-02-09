@@ -22,7 +22,7 @@ class TalentBrewScraper(LinkScraper):
         self.job_links = []  # Make sure the list is empty so not to duplicate data
 
         print(f"Fetching jobs from {self.domain}")
-        response = self.session.get(
+        response = self.session_utils.session.get(
             self.domain + self.search_directory,
             params=self.params
         )

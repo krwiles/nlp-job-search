@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 
 from src.data import *
-from src.utils import random_delay
 from src.scrapers.link_scraper import LinkScraper
 
 
@@ -32,7 +31,7 @@ class CiscoJobScraper(LinkScraper):
         Utilizes an endpoint on Cisco's site to get the number of job listings with the filters applied.
         """
         print("Fetching Cisco job count...")
-        job_count_response = self.session.get(
+        job_count_response = self.session_utils.session.get(
             self.job_num_directory,
             params=self.params
         )
@@ -64,11 +63,14 @@ class CiscoJobScraper(LinkScraper):
 
         # Loop through the pagination on Cisco's site
         for offset in range(0, job_count, self.pageSize):
-            print(f"Requesting jobs: offset {offset}")
+            print(f"Requesting jobs from {self.domain}: offset {offset}")
 
             # Set params in request
             self.params["projectOffset"] = offset
-            response = self.session.get(self.domain, params=self.params)
+            response = self.session_utils.session.get(
+                self.domain, 
+                params=self.params
+            )
             response.raise_for_status()  # Checks for error codes in response
 
             soup = BeautifulSoup(response.text, "html.parser")
@@ -89,4 +91,5 @@ class CiscoJobScraper(LinkScraper):
                 ))
 
             # Add a delay after each page to mimic human behavior
-            random_delay()
+            self.session_utils.random_delay()
+        print(f"Finished fetching jobs from {self.domain}. Total jobs fetched: {len(self.job_links)}")

@@ -3,7 +3,8 @@ from pathlib import Path
 from typing import List
 
 from src.data import JobLink, JobPageEntry
-from src.utils import create_session, random_delay, clean_url
+from src.utils import clean_url
+from src.utils import SessionUtils
 
 
 class PageScraper:
@@ -21,7 +22,7 @@ class PageScraper:
         output_dir (Path): The output directory where results are saved.
         index_page_entries (List[JobPageEntry]): Entries already present in the index.
         index_urls (Set[str]): The set of URLs already indexed.
-        session (requests.Session): A configured session with default headers.
+        session_utils (SessionUtils): A configured session utility instance.
     """
     def __init__(self, domain: str, job_links: List[JobLink]) -> None:
         self.domain = domain
@@ -39,7 +40,7 @@ class PageScraper:
         self.index_urls = set()
         self.refresh_index()
 
-        self.session = create_session()
+        self.session_utils = SessionUtils()
 
     def refresh_index(self) -> None:
         """Refreshes the instance variables with the latest information from the index."""
@@ -66,7 +67,7 @@ class PageScraper:
 
             # Get the page HTML
             print(f"Fetching web page from {link.url}")
-            response = self.session.get(link.url)
+            response = self.session_utils.session.get(link.url)
             response.raise_for_status()  # Checks for error codes in response
 
             file_name = f"{clean_url(link.url)}.html"
@@ -80,4 +81,4 @@ class PageScraper:
             )
 
             # Add a delay after each page to mimic human behavior
-            random_delay()
+            self.session_utils.random_delay()

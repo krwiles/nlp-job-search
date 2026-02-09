@@ -1,4 +1,4 @@
-from .session_utils import create_session, random_delay
+from .session_utils import SessionUtils
 from .utils import clean_url
 
-__all__ = ["create_session", "random_delay", "clean_url"]
+__all__ = ["SessionUtils", "clean_url"]

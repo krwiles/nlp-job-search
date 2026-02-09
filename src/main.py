@@ -1,10 +1,11 @@
 import json
 
-from controllers import LinkScraperController
-from controllers.page_scraper_controller import PageScraperController
-from src.data import JobLink
-from src.scrapers import get_all_scrapers, PageScraper
-from src.utils import clean_url
+from .controllers import LinkScraperController
+from .controllers.page_scraper_controller import PageScraperController
+from .data import JobLink
+from .scrapers import get_all_scrapers, PageScraper
+from .utils import clean_url
+
 
 if __name__ == "__main__":
 

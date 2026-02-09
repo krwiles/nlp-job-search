@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List
 
 from src.data import JobLink
-from src.utils import create_session
+from src.utils import SessionUtils
 
 
 class LinkScraper(ABC):
@@ -16,7 +16,7 @@ class LinkScraper(ABC):
     Attributes:
         domain (str): The base domain of the website being scraped.
         job_links (List[JobLink]): A list of scraped job links.
-        session (requests.Session): A configured session with default headers.
+        session_utils (SessionUtils): A configured session utility instance.
     """
     def __init__(self, domain: str):
         """
@@ -26,7 +26,7 @@ class LinkScraper(ABC):
             domain (str): The base domain of the website to scrape.
         """
         self.domain = domain
-        self.session = create_session()
+        self.session_utils = SessionUtils()
         self.job_links: List[JobLink] = []
 
     @abstractmethod
