@@ -174,7 +174,8 @@ cython_debug/
 .pypirc
 
 # IDE files
-.idea
+.idea/
+.vscode/
 
 # Data from scraping
 scraped_data/

@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
 
-import requests
-
 from src.data import JobLink
 from src.utils import create_session
 

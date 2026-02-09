@@ -25,8 +25,7 @@ if __name__ == "__main__":
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        # TODO: make job_link and job_page_entry have an optional date in the constructor
-        pages = [JobLink(obj["url"], obj["raw_text"]) for obj in data[-5:]]  # Most recent 5 for testing
+        pages = [JobLink(job["url"], job["raw_text"]) for job in data[-5:]]  # Most recent 5 for testing
 
         all_page_scrapers.append(PageScraper(domain, pages))
 
