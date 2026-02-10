@@ -1,7 +1,7 @@
+from pathlib import Path
 import threading
 import time
 import random
-
 import requests
 
 class SessionUtils:
@@ -36,3 +36,7 @@ class SessionUtils:
         print(f"{name} sleeping for {delay:.2f} seconds...")
         time.sleep(delay)
 
+    def get_page_index(self, domain: str) -> set:
+        """Returns a set of URLs that have already been scraped for a given domain."""
+        # This is a placeholder implementation. You would replace this with actual logic to read from an index file.
+        return set()

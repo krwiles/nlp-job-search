@@ -40,7 +40,12 @@ if __name__ == "__main__":
                 job_links=pages
             )
         )
-
-    page_scraper_controller = PageScraperController(all_page_scrapers)  # Create Page Scraper Controller
+    
+    # Create Page Scraper Controller
+    page_scraper_controller = PageScraperController(
+        file_manager=file_manager, 
+        scraper_list=all_page_scrapers
+    )
+    
     page_scraper_controller.run_scrapers()  # Fetch all pages
     page_scraper_controller.save_job_pages()  # Save all pages

@@ -21,7 +21,6 @@ class PageScraper:
             JobPageEntry and raw HTML content.
         file_manager (FileManager): A file manager instance used for file operations
             such as cleaning filenames and handling output paths.
-        output_dir (Path): The output directory where results are saved.
         index_page_entries (List[JobPageEntry]): Entries already present in the index.
         index_urls (Set[str]): The set of URLs already indexed.
         session_utils (SessionUtils): A configured session utility instance.
@@ -33,29 +32,10 @@ class PageScraper:
         self.job_links: List[JobLink] = job_links  # Links to check
         self.job_pages: List[(JobPageEntry, str)] = []  # List to store fetched web pages
 
-        # Find or create output directory
-        project_root = Path(__file__).resolve().parent.parent.parent
-        self.output_dir = project_root / "scraped_data" / "job_pages" / self.file_manager.clean_url(self.domain)
-        self.output_dir.mkdir(parents=True, exist_ok=True)
-
-        # Load index file if it exists
-        # This file keeps track of the pages that are already saved
-        self.index_page_entries = []
-        self.index_urls = set()
-        self.refresh_index()
+        self.index_page_entries = self.file_manager.load_index(self.domain)
+        self.index_urls = set(entry.url for entry in self.index_page_entries)
 
         self.session_utils = SessionUtils()
-
-    def refresh_index(self) -> None:
-        """Refreshes the instance variables with the latest information from the index."""
-        index = self.output_dir / "index.json"
-        if index.exists():
-            try:
-                with open(index, "r") as f:
-                    self.index_page_entries = json.load(f)
-                    self.index_urls = {page["url"] for page in self.index_page_entries}
-            except Exception as e:
-                print(f"Could not load index for {self.domain}: {e}")
 
     def fetch_pages(self) -> None:
         """
