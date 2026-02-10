@@ -51,24 +51,12 @@ class LinkScraperController:
         """Saves new JobLinks scraped from each scaper to individual JSON files."""
         # Save job_links for each scraper
         for scraper in self.scraper_list:
-            all_new_jobs: List[JobLink] = scraper.job_links
-
-            file_name = f"{self.file_manager.clean_url(scraper.domain)}.json"
-            file_path = self.output_dir / file_name
-
             # Load existing jobs from file if it exists
-            existing_jobs = []
-            existing_urls = set()
-            if file_path.exists():
-                try:
-                    with open(file_path, "r", encoding="utf-8") as f:
-                        existing_jobs = json.load(f)
-                        existing_urls = {job["url"] for job in existing_jobs}
-                except Exception as e:
-                    print(f"Could not load existing data for {scraper.domain}: {e}")
+            existing_jobs = self.file_manager.load_job_links(scraper.domain)
+            existing_urls = set(job.url for job in existing_jobs)
 
             # Filter new jobs that don't already exist
-            new_jobs = [job for job in all_new_jobs if job.url not in existing_urls]
+            new_jobs = [job for job in scraper.job_links if job.url not in existing_urls]
 
             # End loop if there are no new job_links to save
             if not new_jobs:
@@ -76,12 +64,7 @@ class LinkScraperController:
                 continue
 
             # Add new jobs to existing
-            all_jobs_to_save = existing_jobs + [asdict(job) for job in new_jobs]
-
-            # Save updated list
-            try:
-                with file_path.open("w", encoding="utf-8") as f:
-                    json.dump(all_jobs_to_save, f, indent=2, ensure_ascii=False)
-                print(f"Saved {len(new_jobs)} new jobs to {file_path}")
-            except Exception as e:
-                print(f"Failed to save new jobs for {scraper.domain}: {e}")
+            all_jobs_to_save = existing_jobs + new_jobs
+            self.file_manager.save_job_links(scraper.domain, all_jobs_to_save)
+            
+            print(f"Saved {len(new_jobs)} new job links for {scraper.domain}. Total saved: {len(all_jobs_to_save)}.")

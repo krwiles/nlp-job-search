@@ -45,6 +45,8 @@ class PageScraperController:
         for scraper in self.scraper_list:
             # Save all html files from the scraper
             self.file_manager.save_job_pages(scraper.domain, scraper.job_pages)
+            
+            # Save the page entries to the index
             entries = [entry for (entry, html) in scraper.job_pages]
             self.file_manager.save_index(scraper.domain, entries)
 

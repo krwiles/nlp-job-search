@@ -7,18 +7,19 @@ from .utils import FileManager
 
 
 if __name__ == "__main__":
-    file_manager = FileManager()  # Create file manager instance
+    file_manager = FileManager()  # Instantiate file manager for handling all file operations
     
     all_scrapers = get_all_scrapers()  # Instantiate all link scrapers
 
-    # Create Link Scraper Controller
+    # Instantiate Link Scraper Controller
     link_scraper_controller = LinkScraperController(
         file_manager=file_manager, 
         scraper_list=all_scrapers
     )
 
-    link_scraper_controller.run_scrapers()  # Fetch all job links
-    link_scraper_controller.save_new_job_links()  # Save all job links
+    # Run scraper controller
+    link_scraper_controller.run_scrapers()
+    link_scraper_controller.save_new_job_links()
 
     ########################################################
 
@@ -27,11 +28,8 @@ if __name__ == "__main__":
     
     # Create all page scrapers
     for domain in all_domains:
-        file_path = link_scraper_controller.output_dir / f"{file_manager.clean_url(domain)}.json"
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        pages = [JobLink(job["url"], job["raw_text"]) for job in data[-5:]]  # Most recent 5 for testing
+        links = file_manager.load_job_links(domain)  # Load job links for the domain
+        pages = links[-5:]  # Most recent 5 for testing
 
         all_page_scrapers.append(
             PageScraper(

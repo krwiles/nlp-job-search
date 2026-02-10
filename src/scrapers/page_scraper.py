@@ -47,6 +47,7 @@ class PageScraper:
 
         for link in self.job_links:
             if link.url in self.index_urls:
+                print(f"Skipping {link.url} - already in index")
                 continue
 
             # Get the page HTML
