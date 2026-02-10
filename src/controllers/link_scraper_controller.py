@@ -1,10 +1,6 @@
-import json
 import threading
-from dataclasses import asdict
-from pathlib import Path
 from typing import List
 
-from src.data import JobLink
 from src.scrapers import LinkScraper
 from src.utils import FileManager
 
@@ -15,23 +11,20 @@ class LinkScraperController:
 
     Attributes:
         scraper_list (List[LinkScraper]): The list containing references to all instanced scrapers.
-        output_dir (Path): The output directory where job links are stored
+        file_manager (FileManager): An instance of the FileManager class for handling all file operations.
     """
     def __init__(self, file_manager: FileManager, scraper_list: List[LinkScraper] = None) -> None:
         self.file_manager = file_manager
         self.scraper_list = scraper_list or []
 
-        project_root = Path(__file__).resolve().parent.parent.parent
-        self.output_dir = project_root / "scraped_data" / "job_links"
-        self.output_dir.mkdir(parents=True, exist_ok=True)
 
     def add_scraper(self, scraper: LinkScraper) -> None:
-        """Add a scraper to the self.scraper_list"""
         self.scraper_list.append(scraper)
 
+
     def set_scraper_list(self, scraper_list: List[LinkScraper]) -> None:
-        """Replace the entire self.scraper_list"""
         self.scraper_list = scraper_list
+
 
     def run_scrapers(self) -> None:
         """Runs fetch_jobs() for each scraper concurrently using threads."""
@@ -46,6 +39,7 @@ class LinkScraperController:
         # Wait for all threads to finish
         for thread in threads:
             thread.join()
+
 
     def save_new_job_links(self) -> None:
         """Saves new JobLinks scraped from each scaper to individual JSON files."""

@@ -6,6 +6,14 @@ from typing import List, Tuple
 from src.data import JobPageEntry, JobLink
 
 class FileManager:
+    """
+    A class for handling file operations such as cleaning URLs, saving and loading 
+    job links and pages, and managing the index.
+    
+    Attributes:
+        output_dir_pages (Path): The output directory where job pages are stored.
+        output_dir_links (Path): The output directory where job links are stored.
+    """
     def __init__(self) -> None:
         # Find or create output directory
         project_root = Path(__file__).resolve().parent.parent.parent
