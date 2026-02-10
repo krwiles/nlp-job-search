@@ -25,7 +25,6 @@ class PageScraper:
         index_urls (Set[str]): The set of URLs already indexed.
         session_utils (SessionUtils): A configured session utility instance.
     """
-
     def __init__(self, domain: str, file_manager: FileManager, job_links: List[JobLink]) -> None:
         self.file_manager = file_manager
         self.domain = domain
@@ -36,6 +35,7 @@ class PageScraper:
         self.index_urls = set(entry.url for entry in self.index_page_entries)
 
         self.session_utils = SessionUtils()
+
 
     def fetch_pages(self) -> None:
         """

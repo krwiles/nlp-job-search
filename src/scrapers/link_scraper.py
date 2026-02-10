@@ -19,15 +19,10 @@ class LinkScraper(ABC):
         session_utils (SessionUtils): A configured session utility instance.
     """
     def __init__(self, domain: str):
-        """
-        Initialize a scraper with the target domain.
-
-        Args:
-            domain (str): The base domain of the website to scrape.
-        """
         self.domain = domain
         self.session_utils = SessionUtils()
         self.job_links: List[JobLink] = []
+
 
     @abstractmethod
     def fetch_jobs(self) -> None:
