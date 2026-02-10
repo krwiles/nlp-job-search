@@ -18,6 +18,7 @@ class LinkScraperController:
         self.scraper_list = scraper_list or []
 
 
+
     def add_scraper(self, scraper: LinkScraper) -> None:
         self.scraper_list.append(scraper)
 
