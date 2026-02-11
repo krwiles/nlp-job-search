@@ -11,15 +11,16 @@ class FileManager:
     job links and pages, and managing the index.
     
     Attributes:
+        project_root (Path): The root directory of the project.
         output_dir_pages (Path): The output directory where job pages are stored.
         output_dir_links (Path): The output directory where job links are stored.
     """
     def __init__(self) -> None:
         # Find or create output directory
-        project_root = Path(__file__).resolve().parent.parent.parent
-        self.output_dir_pages = project_root / "scraped_data" / "job_pages"
+        self.project_root = Path(__file__).resolve().parent.parent.parent
+        self.output_dir_pages = self.project_root / "scraped_data" / "job_pages"
         self.output_dir_pages.mkdir(parents=True, exist_ok=True)
-        self.output_dir_links = project_root / "scraped_data" / "job_links"
+        self.output_dir_links = self.project_root / "scraped_data" / "job_links"
         self.output_dir_links.mkdir(parents=True, exist_ok=True)
     
     
@@ -95,3 +96,25 @@ class FileManager:
                 json.dump([asdict(job) for job in job_links], f, indent=2, ensure_ascii=False)
         except Exception as e:
             print(f"Failed to save job links for {domain}: {e}")
+            
+    def load_html(self, domain: str, job_page_entry: JobPageEntry) -> str:
+        """Loads the HTML content of a saved job page."""
+        file_path = self.output_dir_pages / self.clean_url(domain) / job_page_entry.file_name
+        
+        try:
+            return file_path.read_text(encoding="utf-8")
+        except Exception as e:
+            print(f"Failed to load HTML for {job_page_entry}: {e}")
+            return ""
+    
+    def load_text(self, relative_path: Path) -> str:
+        """Loads text content from a given relative file path."""
+        file_path = self.project_root / relative_path
+        
+        try:
+            return file_path.read_text(encoding="utf-8")
+        except Exception as e:
+            print(f"Failed to load text from {file_path}: {e}")
+            return ""
+    
+    
