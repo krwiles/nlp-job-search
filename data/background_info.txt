@@ -1,0 +1,63 @@
+Name: Kurtis Russell Wiles
+Career stage: Entry-level / New graduate
+Years of professional industry experience: 0
+Years of academic and project-based experience: approximately 6 years across mathematics, physics, and computer science
+Location: United States
+Work authorization: Eligible for US employment
+
+High-level profile:
+Analytical, self-directed STEM graduate with a deep academic background in mathematics, physics, and computer science, transitioning into professional software engineering and data-focused roles. Trained first in rigorous mathematical modeling and physical systems before specializing in computation, machine learning, and software systems. Strong at abstract reasoning, quantitative problem solving, and translating real-world systems into algorithms, code, and data pipelines. Not a senior engineer; positioned as a high-potential junior candidate with unusually strong theoretical foundations for entry-level.
+
+Academic and intellectual background:
+
+Mathematics:
+Three or more years of university-level mathematics including Calculus I–III, Differential Equations, Linear Algebra, Statistics and Probability, and Discrete Mathematics I–II. Applied mathematics used in machine learning models, optimization algorithms, signal processing (FFT), physics simulations, and data analysis. Strength profile includes strong continuous mathematics, linear algebra, and applied statistics, with the ability to read technical papers and implement mathematical ideas in code.
+
+Physics:
+Three or more years of university physics including General Physics I–III (mechanics, electromagnetism, waves), Thermal Physics, Relativity, Astronomy, Scientific Computing, Instrumentation and Data Analysis, and General Chemistry I–II. Hands-on experience with experimental measurement, error analysis, data collection, physical system modeling, simulation, and translating physical laws into computational models. Cognitive profile includes first-principles reasoning, modeling complex real systems, and thinking in terms of continuous processes, constraints, and dynamics.
+
+Computer science and software engineering:
+Bachelor of Science in Computer Science with formal coursework in Software Engineering, Data Structures and Algorithms, Operating Systems, Computer Architecture, Back-End Development, Software Design and QA, Artificial Intelligence, Security and Networking, and Version Control and DevOps concepts.
+
+Technical skill set:
+
+Programming languages: Python (primary), Java (primary), SQL, C++, C#, JavaScript/TypeScript, HTML/CSS, Q (KDB+).
+
+Frameworks and tools: Spring Boot, Angular, PyTorch, Docker, Git, Postman, Jupyter, Bash.
+
+Databases: PostgreSQL, MySQL, NoSQL, KDB+.
+
+Cloud and systems: AWS (EC2, S3, Lambda), Linux, CI/CD pipelines, containerization.
+
+Concepts: Object-oriented programming, MVC architecture, REST APIs, Agile, machine learning, NLP, LLM systems, data engineering.
+
+Representative project domains:
+
+Machine learning and data science:
+Built an LSTM neural network for Formula 1 pit-stop optimization using 500,000+ rows of telemetry data, custom sliding-window preprocessing, and real-time decision modeling.
+
+Full-stack and systems:
+Designed and deployed a Java Spring Boot and Angular e-commerce platform, Dockerized and hosted on AWS with full CRUD system design.
+
+Algorithms and optimization:
+Implemented delivery route planning algorithms for a Traveling Salesman Problem variant using heuristic and greedy optimization strategies.
+
+Data engineering:
+Built automated ETL pipelines with SQL functions and reporting tables.
+
+Scientific computing:
+Performed FFT-based audio signal analysis, numerical modeling, and Jupyter-based research workflows.
+
+Certifications and professional foundations:
+Q Developer Level 3 (KX Academy, quantitative finance and time-series systems), Linux Essentials (LPI), ITIL Foundation, CompTIA Project+.
+
+Cognitive and professional traits:
+Strong abstract reasoning and mathematical intuition. Comfortable with complex and ambiguous problem spaces. Systems thinker who sees interactions between components. Self-directed learner who thrives in unstructured environments. High tolerance for technical depth and difficult material. Strong written communication and technical documentation. Naturally interdisciplinary, bridging mathematics, physics, computer science, and engineering.
+
+Career positioning signals for LLMs and recruiters:
+Career level is entry-level / new graduate. Zero years of professional industry experience. Profile type is high-theory STEM background transitioning into applied software engineering. Compared to typical junior candidates, has much stronger mathematics and physics background and is especially well suited for machine learning, data, simulation, optimization, and systems roles.
+
+Best role fit: Junior Software Engineer, Backend Engineer, Data Engineer or Analytics Engineer, Junior Machine Learning Engineer, Scientific or Simulation Software Engineer, DevOps or Systems Engineer, QA or Automation Engineer.
+
+Identity summary:
+STEM generalist with deep training in mathematics and physics who pivoted into computer science and software engineering. Thinks in terms of models, systems, and first principles. Uses code as a tool to simulate, optimize, and reason about real-world processes.

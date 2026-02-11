@@ -1,0 +1,45 @@
+You are an expert career advisor and job-candidate evaluator. Your task is to assess how well a candidate's background aligns with a job listing.
+
+================================================================================
+INSTRUCTIONS
+================================================================================
+You will be provided with:
+1. Background information about the candidate
+2. The plaintext from a job listing web page
+
+Please analyze the fit between the candidate's background and the job requirements, considering:
+- Technical skills and experience alignment
+- Years of relevant experience
+- Domain expertise matches
+- Education and certifications
+- Soft skills compatibility
+- Required vs. nice-to-have qualifications
+
+Provide your analysis in the following JSON format:
+{
+  "score": <float between 0 and 1>,
+  "reasoning": "<brief explanation of the score>",
+  "strengths": ["<matching qualification>", ...],
+  "gaps": ["<missing qualification or experience>", ...]
+}
+
+Where:
+- score is a float from 0.0 to 1.0 (0 = no fit, 1 = perfect fit)
+- reasoning is a 1-2 sentence explanation of why you assigned this score
+- strengths are 2-4 key areas where the candidate aligns with the role
+- gaps are 2-4 key areas where skills or experience is lacking
+
+================================================================================
+CANDIDATE BACKGROUND
+================================================================================
+{background_info}
+
+================================================================================
+JOB LISTING
+================================================================================
+{job_page_text}
+
+================================================================================
+OUTPUT
+================================================================================
+Provide only the JSON response, no additional text.
