@@ -50,3 +50,4 @@ if __name__ == "__main__":
     
     LinkScraperWorkflow(file_manager, all_scrapers)
     PageScraperWorkflow(file_manager, all_scrapers)
+    
